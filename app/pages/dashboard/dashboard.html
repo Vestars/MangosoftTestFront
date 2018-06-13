@@ -1,0 +1,59 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#/login">Dashboard Page</a>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="button" ng-click="logout()">Logout</button>
+</nav>
+<div class="ml-3 mr-3 mt-3">
+    <table class="table border">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="x in usersList track by $index">
+            <th scope="row">{{ x.id }}</th>
+            <td>{{ x.username }}</td>
+            <td>{{ x.firstName }}</td>
+            <td>{{ x.lastName }}</td>
+            <td><button type="button" class="btn btn-warning" ng-click="showModal(x)">Update</button></td>
+            <td><button type="button" class="btn btn-danger" ng-click="deleteUser(x.username, $index)">Delete</button></td>
+        </tr>
+        </tbody>
+    </table>
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item" ng-class="{ 'active' : queryParam.page === (x - 1)}" ng-repeat="x in countPagesArray"><a class="page-link" ng-click="setPage(x)">{{ x }}</a></li>
+        </ul>
+    </nav>
+    <div class="modal fade show modal-update" ng-if="showUpdateModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update user</h5>
+                    <button type="button" class="close" ng-click="showModal()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form ng-submit="updateUser(updatedUser)">
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="updatedUser.firstName" placeholder="First name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="updatedUser.lastName" placeholder="Last name">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" ng-click="showModal()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

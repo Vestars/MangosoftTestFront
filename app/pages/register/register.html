@@ -1,0 +1,25 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="#/register">Register Page</a>
+</nav>
+<div class="main-auth">
+  <form class="form-auth" ng-submit="register(registerForm)" name="registerForm">
+    <h4 class="mb-3 text-center">Registration</h4>
+    <div ng-if="success === false" class="alert alert-danger justify-content-center">{{ errorMsg }}</div>
+    <div class="form-group">
+      <input type="text" class="form-control" ng-model="registerForm.username" required placeholder="Username" minlength="3">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" ng-model="registerForm.firstName" required placeholder="First name">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" ng-model="registerForm.lastName" required placeholder="Last name">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" ng-model="registerForm.password" required placeholder="Password">
+    </div>
+    <button type="submit" ng-disabled="registerForm.$invalid" class="btn btn-primary">Register</button>
+    <a href="#/login">
+      <button type="button" class="btn btn-primary float-right">Go to login</button>
+    </a>
+  </form>
+</div>
