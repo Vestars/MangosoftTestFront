@@ -12,7 +12,8 @@ angular.module('myApp')
             if(response.success){
                 $location.path("/dashboard");
             }else{
-                $scope.error = response.message;
+                $scope.success = response.success;
+                $scope.errorMsg = response.message;
             }
         });
     };
